@@ -3,7 +3,14 @@
 Static analysis tools are frequently used to detect potential vulnerabilities in software systems. However, an inevitable problem of these tools is their large number of warnings with a high false positive rate, which consumes time and effort for investigating. In this paper, we present DeFP, a novel method for ranking static analysis warnings. Based on the intuition that warnings which have similar contexts tend to have similar labels (true positive or false positive), DeFP is built with two BiLSTM models to capture the patterns associated with the contexts of labeled warnings. After that, for a set of new warnings, DeFP can calculate and rank them  according to their likelihoods to be true positives (i.e., actual vulnerabilities).
 Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
 
-## Motivating Example
+
+# Table of contents
+1. [Motivating Example](#motivating_example)
+2. [Dataset](#dataset)
+3. [Identifier Abstraction Component](#identifier_abstraction)
+4. [Experimental Results](#experimental_results)
+
+## Motivating Example <a name="motivating_example"></a>
 An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
  
 ```c
@@ -106,7 +113,7 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 97| 		}
 98| 	}
 ```
-## Dataset
+## Dataset <a name="dataset"></a>
 In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [?] and SARD [?]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [?]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [?], [?]. 
 
 [DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing)
@@ -245,10 +252,10 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 
 <sup> #W, #TP and #FP are total warnings, true positives and false positives. </sup>
 
-## Identifier Abstraction Component 
+## Identifier Abstraction Component <a name="identifier_abstraction"></a>
 DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. 
 See [source file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
-## Experimental Results
+## Experimental Results <a name="experimental_results"></a>
 **RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [?]?
 
 <table>
