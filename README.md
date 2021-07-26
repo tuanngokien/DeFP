@@ -3,6 +3,40 @@
 Static analysis tools are frequently used to detect potential vulnerabilities in software systems. However, an inevitable problem of these tools is their large number of warnings with a high false positive rate, which consumes time and effort for investigating. In this paper, we present DeFP, a novel method for ranking static analysis warnings. Based on the intuition that warnings which have similar contexts tend to have similar labels (true positive or false positive), DeFP is built with two BiLSTM models to capture the patterns associated with the contexts of labeled warnings. After that, for a set of new warnings, DeFP can calculate and rank them  according to their likelihoods to be true positives (i.e., actual vulnerabilities).
 Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
 
+## Identifier Abstraction Component 
+DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. The source code below represents an abstracted version of function **aoc_rate_type_str**, which is mentioned in motivating example.
+```c
+ 1| static const char * FUNC1(enum VAR1 VAR2) {
+ 2|     const char * VAR3;
+ 3| 
+ 4|     switch (VAR2) {
+ 5|         default:
+ 6|         case VAR4:
+ 7|             VAR3 = STRING_LIT;
+ 8|             break;
+ 9|         case VAR5:
+10|             VAR3 = STRING_LIT;
+11|             break;
+12|         case VAR6:
+13|             VAR3 = STRING_LIT;
+14|             break;
+15|         case VAR7:
+16|             VAR3 = STRING_LIT;
+17|             break;
+18|         case VAR8:
+19|             VAR3 = STRING_LIT;
+20|             break;
+21|         case VAR9:
+22|             VAR3 = STRING_LIT;
+23|             break;
+24|         case VAR10:
+25|             VAR3 = STRING_LIT;
+26|             break;
+27|     }
+28|     return VAR3;
+29| }
+```
+See [Python file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
 ## Experimental Results
 **RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [?]?
 
