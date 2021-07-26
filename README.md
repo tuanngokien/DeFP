@@ -131,7 +131,7 @@ DeFP abstracts all the identifiers before feeding them to the models. In particu
 See [source file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
 
 ## Dataset <a name="dataset"></a>
-In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [1] and SARD [2]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [3]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [4], [5]. 
+In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [1] and SARD [2]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [3]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,620 warnings in 10 open-source projects [4], [5]. 
 
 [DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing)
 <br />
@@ -238,7 +238,7 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
     <td>9</td>
     <td>LibPNG</td>
     <td>170</td>
-    <td>96</td>
+    <td>9</td>
     <td>74</td>
     <td>2</td>
     <td>0</td>
@@ -257,8 +257,8 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
   <tr>
    <td><b>#</b></td>
 <td><b>Total</b></td>
-<td><b>6085</b></td>
-<td><b>1097</b></td>
+<td><b>5998</b></td>
+<td><b>1010</b></td>
 <td><b>4988</b></td>
 <td><b>622</b></td>
 <td><b>89</b></td>
