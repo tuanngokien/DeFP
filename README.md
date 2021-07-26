@@ -3,13 +3,148 @@
 Static analysis tools are frequently used to detect potential vulnerabilities in software systems. However, an inevitable problem of these tools is their large number of warnings with a high false positive rate, which consumes time and effort for investigating. In this paper, we present DeFP, a novel method for ranking static analysis warnings. Based on the intuition that warnings which have similar contexts tend to have similar labels (true positive or false positive), DeFP is built with two BiLSTM models to capture the patterns associated with the contexts of labeled warnings. After that, for a set of new warnings, DeFP can calculate and rank them  according to their likelihoods to be true positives (i.e., actual vulnerabilities).
 Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
 
+## Dataset
+In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [?] and SARD [?]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [?]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [?], [?]. 
+
+[DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing)
+<br />
+
+<p align="center"></p>
+<table>
+<thead>
+  <tr>
+    <th rowspan="2">No.</th>
+    <th rowspan="2">Project</th>
+    <th colspan="3">BufferOverflow</th>
+    <th colspan="3">NullPointerDereference</th>
+  </tr>
+  <tr>
+    <td>#W</td>
+    <td>#TP</td>
+    <td>#FP</td>
+    <td>#W</td>
+    <td>#TP</td>
+    <td>#FP</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>Asterisk</td>
+    <td>2049</td>
+    <td>63</td>
+    <td>1986</td>
+    <td>133</td>
+    <td>0</td>
+    <td>133</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>FFmpeg</td>
+    <td>1139</td>
+    <td>387</td>
+    <td>752</td>
+    <td>105</td>
+    <td>37</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Qemu</td>
+    <td>882</td>
+    <td>396</td>
+    <td>486</td>
+    <td>72</td>
+    <td>39</td>
+    <td>33</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>OpenSSL</td>
+    <td>595</td>
+    <td>53</td>
+    <td>542</td>
+    <td>9</td>
+    <td>2</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Xen</td>
+    <td>388</td>
+    <td>15</td>
+    <td>373</td>
+    <td>23</td>
+    <td>6</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>VLC</td>
+    <td>288</td>
+    <td>20</td>
+    <td>268</td>
+    <td>16</td>
+    <td>2</td>
+    <td>14</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Httpd</td>
+    <td>250</td>
+    <td>45</td>
+    <td>205</td>
+    <td>17</td>
+    <td>0</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Pidgin</td>
+    <td>250</td>
+    <td>13</td>
+    <td>237</td>
+    <td>242</td>
+    <td>0</td>
+    <td>242</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>LibPNG</td>
+    <td>170</td>
+    <td>96</td>
+    <td>74</td>
+    <td>2</td>
+    <td>0</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>LibTIFF</td>
+    <td>74</td>
+    <td>9</td>
+    <td>65</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+  </tr>
+  <tr>
+   <td><b>#</b></td>
+<td><b>Total</b></td>
+<td><b>6085</b></td>
+<td><b>1097</b></td>
+<td><b>4988</b></td>
+<td><b>622</b></td>
+<td><b>89</b></td>
+<td><b>533</b></td>
+  </tr>
+</tbody>
+</table>
+
+<sup> #W, #TP and #FP are total warnings, true positives and false positives. </sup>
+
 ## Motivating Example
 An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
-
-<details>
-<summary>
-<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show source code</a>    
-</summary>
  
 ```c
  1| 	static const char *aoc_rate_type_str(enum ast_aoc_s_rate_type value)
@@ -111,4 +246,3 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 97| 		}
 98| 	}
 ```
-</details>
