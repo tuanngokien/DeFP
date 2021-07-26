@@ -9,6 +9,7 @@ Our experimental results on a dataset of 10 real-world projects show that using 
 2. [Dataset](#dataset)
 3. [Identifier Abstraction Component](#identifier_abstraction)
 4. [Experimental Results](#experimental_results)
+5. [References](#references)
 
 ## Motivating Example <a name="motivating_example"></a>
 An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
@@ -114,7 +115,7 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 98| 	}
 ```
 ## Dataset <a name="dataset"></a>
-In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [?] and SARD [?]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [?]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [?], [?]. 
+In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [1] and SARD [2]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [3]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [4], [5]. 
 
 [DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing)
 <br />
@@ -256,7 +257,7 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. 
 See [source file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
 ## Experimental Results <a name="experimental_results"></a>
-**RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [?]?
+**RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [6]?
 
 <table>
 <thead>
@@ -750,3 +751,16 @@ See [source file](/src/identifier_abstraction.py) to understand identifier abstr
   </tr>
 </tbody>
 </table>
+
+## References <a name="references"></a>
+[1] V. Okun, A. Delaitre, P. E. Black et al., “Report on the static analysis tool exposition (sate) iv,” NIST Special Publication, vol. 500, p. 297, 2013. 
+
+[2] N. I. of Standards and Technology, “Software assurance reference dataset.” [Online]. Available: https://samate.nist.gov/SRD/index.php
+
+[3] S. Chakraborty, R. Krishna, Y. Ding, and B. Ray, “Deep learning based vulnerability detection: Are we there yet,” IEEE Transactions on Software Engineering, 2021.
+
+[4] Y. Zhou, S. Liu, J. Siow, X. Du, and Y. Liu, “Devign: Effective vulnerability identification by learning comprehensive program semantics via graph neural networks,” arXiv preprint arXiv:1909.03496, 2019.
+
+[5] G. Lin, W. Xiao, J. Zhang, and Y. Xiang, “Deep learning-based vulnerable function detection: A benchmark,” in International Conference on Information and Communications Security. Springer, 2019, pp. 219– 232.
+
+[6] S. Lee, S. Hong, J. Yi, T. Kim, C.-J. Kim, and S. Yoo, “Classifying false positive static checker alarms in continuous integration using convolutional neural networks,” in 2019 12th IEEE Conference on Software Testing, Validation and Verification (ICST). IEEE, 2019, pp. 391–401.
