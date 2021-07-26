@@ -4,12 +4,7 @@ Static analysis tools are frequently used to detect potential vulnerabilities in
 Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
 
 ## Motivating Example
-[Asterisk] https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c
-
-An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example)
-<details><summary>Show full source code</summary>
-  
-<p>
+An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
 
 ```c
  1| 	static const char *aoc_rate_type_str(enum ast_aoc_s_rate_type value)
@@ -111,6 +106,3 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 97| 		}
 98| 	}
 ```
-
-</p>
-</details>
