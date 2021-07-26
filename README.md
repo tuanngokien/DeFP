@@ -6,6 +6,11 @@ Our experimental results on a dataset of 10 real-world projects show that using 
 ## Motivating Example
 An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
 
+<details>
+<summary>
+<a class="btnfire small stroke"><em class="fas fa-chevron-circle-down"></em>&nbsp;&nbsp;Show source code</a>    
+</summary>
+ 
 ```c
  1| 	static const char *aoc_rate_type_str(enum ast_aoc_s_rate_type value)
  2| 	{
@@ -106,3 +111,4 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 97| 		}
 98| 	}
 ```
+</details>
