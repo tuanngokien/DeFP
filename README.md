@@ -9,14 +9,13 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 [DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing)
 <br />
 
-<p align="center"></p>
 <table>
 <thead>
   <tr>
     <th rowspan="2">No.</th>
     <th rowspan="2">Project</th>
-    <th colspan="3">BufferOverflow</th>
-    <th colspan="3">NullPointerDereference</th>
+    <th colspan="3">Buffer Overflow</th>
+    <th colspan="3">Null Pointer Dereference</th>
   </tr>
   <tr>
     <td>#W</td>
