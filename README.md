@@ -6,10 +6,11 @@ Our experimental results on a dataset of 10 real-world projects show that using 
 
 # Table of contents
 1. [Motivating Example](#motivating_example)
-2. [Dataset](#dataset)
+2. [Model](#model)
 3. [Identifier Abstraction Component](#identifier_abstraction)
-4. [Experimental Results](#experimental_results)
-5. [References](#references)
+4. [Dataset](#dataset)
+5. [Experimental Results](#experimental_results)
+6. [References](#references)
 
 ## Motivating Example <a name="motivating_example"></a>
 An false positive warning reported by Flawfinder at line 52 (corresponds to line 24 in the paper's example) [[Link](https://github.com/asterisk/asterisk/blob/3656c42cb04702e5b223f6984975abae439021ed/main/aoc.c)]
@@ -114,6 +115,18 @@ An false positive warning reported by Flawfinder at line 52 (corresponds to line
 97| 		}
 98| 	}
 ```
+## DeFP's Representation Model Architecture <a name="model"></a>
+
+![DeFP flow](/imgs/flow.png)
+
+The above image illustrates our SA warning ranking approach. Particularly, from the source code and the set of warnings of the analyzed program, we extract the reported statements and their program slices associated with warnings. For each warning, the reported statement and the corresponding program slice are converted into vectors and then fed to the BiLSTM models to predict its likelihood to be TP. After that, all of the warnings of the program are ranked according to their predicted scores.
+
+![DeFP model](/imgs/model.png)
+
+## Identifier Abstraction Component <a name="identifier_abstraction"></a>
+DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. 
+See [source file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
+
 ## Dataset <a name="dataset"></a>
 In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [1] and SARD [2]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [3]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [4], [5]. 
 
@@ -253,9 +266,6 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 
 <sup> #W, #TP and #FP are total warnings, true positives and false positives. </sup>
 
-## Identifier Abstraction Component <a name="identifier_abstraction"></a>
-DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. 
-See [source file](/src/identifier_abstraction.py) to understand identifier abstraction rules.
 ## Experimental Results <a name="experimental_results"></a>
 **RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [6]?
 
