@@ -4,7 +4,7 @@ Static analysis tools are frequently used to detect potential vulnerabilities in
 Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
 
 ## Experimental Results
-**RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach [?]?
+**RQ1.** How accurate is DeFP in ranking SA warnings? and how is it compared to the state-of-the-art approach CNN by Lee et al. [?]?
 
 <table>
 <thead>
@@ -177,9 +177,327 @@ Our experimental results on a dataset of 10 real-world projects show that using 
 
 **RQ2.** How does the extracted warning context affect DeFP’s performance? 
 
-**RQ3.** How does the highlighting reported statement impact the performance of DeFP?
+<table>
+<thead>
+  <tr>
+    <th rowspan="3">WN</th>
+    <th rowspan="3">Project</th>
+    <th rowspan="3">Method</th>
+    <th colspan="10"># TP warnings found in top-k% warnings</th>
+  </tr>
+  <tr>
+    <td colspan="2">Top-5%</td>
+    <td colspan="2">Top-10%</td>
+    <td colspan="2">Top-20%</td>
+    <td colspan="2">Top-50%</td>
+    <td colspan="2">Top-60%</td>
+  </tr>
+  <tr>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="4">BO</td>
+    <td rowspan="4">COMBINED</td>
+    <td>RAW</td>
+    <td>47.00%</td>
+    <td>13.96%</td>
+    <td>39.83%</td>
+    <td>23.66%</td>
+    <td>32.92%</td>
+    <td>39.11%</td>
+    <td>24.30%</td>
+    <td>72.18%</td>
+    <td>22.71%</td>
+    <td>80.89%</td>
+  </tr>
+  <tr>
+    <td>CD</td>
+    <td>58.00%</td>
+    <td>17.23%</td>
+    <td>40.50%</td>
+    <td>24.06%</td>
+    <td>25.25%</td>
+    <td>30.00%</td>
+    <td>19.83%</td>
+    <td>58.91%</td>
+    <td>20.96%</td>
+    <td>74.65%</td>
+  </tr>
+  <tr>
+    <td>DD</td>
+    <td>48.00%</td>
+    <td>14.26%</td>
+    <td>42.33%</td>
+    <td>25.15%</td>
+    <td>34.92%</td>
+    <td>41.49%</td>
+    <td>25.03%</td>
+    <td>74.36%</td>
+    <td>23.10%</td>
+    <td>82.28%</td>
+  </tr>
+  <tr>
+    <td>CD &amp; DD</td>
+    <td>66.00%</td>
+    <td>19.60%</td>
+    <td>56.00%</td>
+    <td>33.27%</td>
+    <td>43.92%</td>
+    <td>52.18%</td>
+    <td>27.50%</td>
+    <td>81.68%</td>
+    <td>24.82%</td>
+    <td>88.42%</td>
+  </tr>
+  <tr>
+    <td rowspan="4">NPD</td>
+    <td rowspan="4">COMBINED</td>
+    <td>RAW</td>
+    <td>40.00%</td>
+    <td>13.40%</td>
+    <td>48.33%</td>
+    <td>32.42%</td>
+    <td>36.80%</td>
+    <td>51.57%</td>
+    <td>23.55%</td>
+    <td>81.90%</td>
+    <td>20.98%</td>
+    <td>87.65%</td>
+  </tr>
+  <tr>
+    <td>CD</td>
+    <td>43.33%</td>
+    <td>14.71%</td>
+    <td>36.67%</td>
+    <td>24.84%</td>
+    <td>35.20%</td>
+    <td>49.41%</td>
+    <td>24.52%</td>
+    <td>85.36%</td>
+    <td>20.70%</td>
+    <td>86.47%</td>
+  </tr>
+  <tr>
+    <td>DD</td>
+    <td>70.00%</td>
+    <td>23.40%</td>
+    <td>51.67%</td>
+    <td>34.58%</td>
+    <td>40.80%</td>
+    <td>57.19%</td>
+    <td>24.84%</td>
+    <td>86.47%</td>
+    <td>22.04%</td>
+    <td>92.09%</td>
+  </tr>
+  <tr>
+    <td>CD &amp; DD</td>
+    <td>80.00%</td>
+    <td>26.93%</td>
+    <td>65.00%</td>
+    <td>43.66%</td>
+    <td>47.20%</td>
+    <td>66.14%</td>
+    <td>25.81%</td>
+    <td>89.74%</td>
+    <td>22.58%</td>
+    <td>94.25%</td>
+  </tr>
+</tbody>
+</table>
 
-**RQ4.** How does the identifier abstraction component impact the performance of DeFP?
+<sup> RAW, CD, DD, and CD && DD denote the warning contexts which are captured by raw source code, program slices on control dependencies, program slices on data dependencies, and program slices on both control and data dependencies, respectively. </sup>
+
+**RQ3.** How does the highlighting reported statement (RP) impact the performance of DeFP?
+
+<table>
+<thead>
+  <tr>
+    <th rowspan="3">WN</th>
+    <th rowspan="3">Project</th>
+    <th rowspan="3">Method</th>
+    <th colspan="10"># TP warnings found in top-k% warnings</th>
+  </tr>
+  <tr>
+    <td colspan="2">Top-5%</td>
+    <td colspan="2">Top-10%</td>
+    <td colspan="2">Top-20%</td>
+    <td colspan="2">Top-50%</td>
+    <td colspan="2">Top-60%</td>
+  </tr>
+  <tr>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">BO</td>
+    <td rowspan="2">COMBINED</td>
+    <td>W/O RP</td>
+    <td>59.00%</td>
+    <td>17.52%</td>
+    <td>54.50%</td>
+    <td>32.38%</td>
+    <td>41.00%</td>
+    <td>48.71%</td>
+    <td>26.83%</td>
+    <td>79.70%</td>
+    <td>24.43%</td>
+    <td>87.03%</td>
+  </tr>
+  <tr>
+    <td>With RP</td>
+    <td>66.00%</td>
+    <td>19.60%</td>
+    <td>56.00%</td>
+    <td>33.27%</td>
+    <td>43.92%</td>
+    <td>52.18%</td>
+    <td>27.50%</td>
+    <td>81.68%</td>
+    <td>24.82%</td>
+    <td>88.42%</td>
+  </tr>
+  <tr>
+    <td rowspan="2">NPD</td>
+    <td rowspan="2">COMBINED</td>
+    <td>W/O RP</td>
+    <td>70.00%</td>
+    <td>23.66%</td>
+    <td>55.00%</td>
+    <td>37.12%</td>
+    <td>42.40%</td>
+    <td>59.61%</td>
+    <td>23.55%</td>
+    <td>82.03%</td>
+    <td>19.90%</td>
+    <td>83.20%</td>
+  </tr>
+  <tr>
+    <td>With RP</td>
+    <td>80.00%</td>
+    <td>26.93%</td>
+    <td>65.00%</td>
+    <td>43.66%</td>
+    <td>47.20%</td>
+    <td>66.14%</td>
+    <td>25.81%</td>
+    <td>89.74%</td>
+    <td>22.58%</td>
+    <td>94.25%</td>
+  </tr>
+</tbody>
+</table>
+
+**RQ4.** How does the identifier abstraction (IA) component impact the performance of DeFP?
+
+<table>
+<thead>
+  <tr>
+    <th rowspan="3">WN</th>
+    <th rowspan="3">Project</th>
+    <th rowspan="3">Method</th>
+    <th colspan="10"># TP warnings found in top-k% warnings</th>
+  </tr>
+  <tr>
+    <td colspan="2">Top-5%</td>
+    <td colspan="2">Top-10%</td>
+    <td colspan="2">Top-20%</td>
+    <td colspan="2">Top-50%</td>
+    <td colspan="2">Top-60%</td>
+  </tr>
+  <tr>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+    <td>Precision</td>
+    <td>Recall</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">BO</td>
+    <td rowspan="2">COMBINED</td>
+    <td>W/O IA</td>
+    <td>62.33%</td>
+    <td>18.51%</td>
+    <td>49.00%</td>
+    <td>29.11%</td>
+    <td>39.83%</td>
+    <td>47.33%</td>
+    <td>27.07%</td>
+    <td>80.40%</td>
+    <td>24.54%</td>
+    <td>87.43%</td>
+  </tr>
+  <tr>
+    <td>With IA</td>
+    <td>66.00%</td>
+    <td>19.60%</td>
+    <td>56.00%</td>
+    <td>33.27%</td>
+    <td>43.92%</td>
+    <td>52.18%</td>
+    <td>27.50%</td>
+    <td>81.68%</td>
+    <td>24.82%</td>
+    <td>88.42%</td>
+  </tr>
+  <tr>
+    <td rowspan="2">NPD</td>
+    <td rowspan="2">COMBINED</td>
+    <td>W/O IA</td>
+    <td>56.67%</td>
+    <td>19.15%</td>
+    <td>48.33%</td>
+    <td>32.75%</td>
+    <td>41.60%</td>
+    <td>58.43%</td>
+    <td>24.84%</td>
+    <td>86.54%</td>
+    <td>22.85%</td>
+    <td>95.56%</td>
+  </tr>
+  <tr>
+    <td>With IA</td>
+    <td>80.00%</td>
+    <td>26.93%</td>
+    <td>65.00%</td>
+    <td>43.66%</td>
+    <td>47.20%</td>
+    <td>66.14%</td>
+    <td>25.81%</td>
+    <td>89.74%</td>
+    <td>22.58%</td>
+    <td>94.25%</td>
+  </tr>
+</tbody>
+</table>
 
 ## Dataset
 In order to train and evaluate an ML model ranking SA warnings, we need a set of warnings labeled to be TPs or FPs. Currently, most of the approaches are trained and evaluated by synthetic datasets such as Juliet [?] and SARD [?]. However, they only contain simple examples which are artificially created from known vulnerable patterns. Thus, the patterns which the ML models capture from these datasets could not reflect the real-world scenarios [?]. To evaluate our solution and the others on real-world data, we construct a dataset containing 6,707 warnings in 10 open-source projects [?], [?]. 
