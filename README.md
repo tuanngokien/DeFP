@@ -120,11 +120,11 @@ An [**False Positive**] Buffer Overflow warning reported by Flawfinder at line 1
 ```
 ## DeFP's Representation Model Architecture <a name="model"></a>
 
-![DeFP flow](/imgs/flow.png)
+![DeFP flow](/imgs/flow_min.png)
 
 The above image illustrates our SA warning ranking approach. Particularly, from the source code and the set of warnings of the analyzed program, we extract the reported statements and their program slices associated with warnings. For each warning, the reported statement and the corresponding program slice are converted into vectors and then fed to the BiLSTM models to predict its likelihood to be TP. After that, all of the warnings of the program are ranked according to their predicted scores.
 
-![DeFP model](/imgs/model.png)
+![DeFP model](/imgs/model_min.png)
 
 ## Identifier Abstraction Component <a name="identifier_abstraction"></a>
 DeFP abstracts all the identifiers before feeding them to the models. In particular, variables, function names, and constants in the extracted program slices are replaced by common symbolic names. 
