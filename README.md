@@ -11,7 +11,7 @@ Our experimental results on a dataset of 10 real-world projects show that using 
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method</th>
+    <th rowspan="3">Method&nbsp&nbsp</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -182,7 +182,7 @@ Our experimental results on a dataset of 10 real-world projects show that using 
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method</th>
+    <th rowspan="3">Method&nbsp&nbsp</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -326,7 +326,7 @@ Our experimental results on a dataset of 10 real-world projects show that using 
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method</th>
+    <th rowspan="3">Method&nbsp&nbsp</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -416,7 +416,7 @@ Our experimental results on a dataset of 10 real-world projects show that using 
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method</th>
+    <th rowspan="3">Method&nbsp&nbsp</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
