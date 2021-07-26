@@ -45,7 +45,7 @@ See [Python file](/src/identifier_abstraction.py) to understand identifier abstr
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method&nbsp&nbsp</th>
+    <th rowspan="3">Method&nbsp;&nbsp;</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -216,7 +216,7 @@ See [Python file](/src/identifier_abstraction.py) to understand identifier abstr
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method&nbsp&nbsp</th>
+    <th rowspan="3">Method&nbsp;&nbsp;</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -360,7 +360,7 @@ See [Python file](/src/identifier_abstraction.py) to understand identifier abstr
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method&nbsp&nbsp</th>
+    <th rowspan="3">Method&nbsp;&nbsp;</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
@@ -450,7 +450,7 @@ See [Python file](/src/identifier_abstraction.py) to understand identifier abstr
   <tr>
     <th rowspan="3">WN</th>
     <th rowspan="3">Project</th>
-    <th rowspan="3">Method&nbsp&nbsp</th>
+    <th rowspan="3">Method&nbsp;&nbsp;</th>
     <th colspan="10"># TP warnings found in top-k% warnings</th>
   </tr>
   <tr>
