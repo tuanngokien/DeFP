@@ -135,7 +135,7 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 
 [DOWNLOAD LINK](https://drive.google.com/drive/folders/1Twl2BbERY-y6cGtzYNodonSEO9GqvDW7?usp=sharing) 
 <br />
-<sup>Read subject systems' source files with the properly encoding</sup>
+<sup>Read subject systems' source files with the proper encoding to avoid misplacing warning locations</sup>
 <br />
 
 <table>
