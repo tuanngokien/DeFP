@@ -254,56 +254,6 @@ def symbolic_tokenize(code):
         tokenized_lines.append(' '.join(final_tokens))
     return "\n".join(tokenized_lines)
 
-
-def create_data_point(cleaned_gadget, warning_line, max_length, add_start_token=False):
-    index = warning_line - 1
-    new_warning_line = 1
-    number_step = 1
-
-    if add_start_token:
-        number_tokens = len(cleaned_gadget[index].split(" ")) + 1
-        result = ["<sos> " + cleaned_gadget[index]]
-    else:
-        number_tokens = len(cleaned_gadget[index].split(" "))
-        result = [cleaned_gadget[index]]
-
-    if number_tokens > max_length:
-        return None
-
-    while True:
-        cur_total = len(result)
-
-        if index - number_step >= 0:
-            tmp = number_tokens + len(cleaned_gadget[index - number_step].split(" "))
-            if tmp > max_length:
-                break
-            else:
-                result.insert(0, cleaned_gadget[index - number_step])
-                number_tokens = tmp
-                new_warning_line += 1
-
-        if index + number_step < len(cleaned_gadget):
-            tmp = number_tokens + len(cleaned_gadget[index + number_step].split(" "))
-            if tmp > max_length:
-                break
-            else:
-                result.append(cleaned_gadget[index + number_step])
-                number_tokens = tmp
-
-        if cur_total == len(result):
-            break
-        number_step += 1
-    return result, new_warning_line
-
-
-def clean_gadget(gadget, warning_line=None, max_length=None, add_start_token=False):
-    cleaned_gadget = symbolic_tokenize("\n".join(gadget))
-    if warning_line is not None:
-        tmp, new_warning_line = create_data_point(cleaned_gadget, warning_line, max_length,
-                                                  add_start_token=add_start_token)
-        return tmp, new_warning_line
-    return cleaned_gadget, warning_line
-
 if __name__ == '__main__':
     print(symbolic_tokenize("""
     static const char *aoc_rate_type_str(enum ast_aoc_s_rate_type value)
