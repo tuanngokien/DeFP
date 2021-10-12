@@ -3,8 +3,7 @@
 # [DeFP]
 # Ranking Warnings of Static Analysis Tools Using Representation Learning
 
-Static analysis tools are frequently used to detect potential vulnerabilities in software systems. However, an inevitable problem of these tools is their large number of warnings with a high false positive rate, which consumes time and effort for investigating. In this paper, we present DeFP, a novel method for ranking static analysis warnings. Based on the intuition that warnings which have similar contexts tend to have similar labels (true positive or false positive), DeFP is built with two BiLSTM models to capture the patterns associated with the contexts of labeled warnings. After that, for a set of new warnings, DeFP can calculate and rank them  according to their likelihoods to be true positives (i.e., actual vulnerabilities).
-Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. 
+Static analysis tools are frequently used to detect potential vulnerabilities in software systems. However, an inevitable problem of these tools is their large number of warnings with a high false positive rate, which consumes time and effort for investigating. In this paper, we present DeFP, a novel method for ranking static analysis warnings. Based on the intuition that warnings which have similar contexts tend to have similar labels (true positive or false positive), DeFP is built with two BiLSTM models to capture the patterns associated with the contexts of labeled warnings. After that, for a set of new warnings, DeFP can calculate and rank them  according to their likelihoods to be true positives (i.e., actual vulnerabilities). Our experimental results on a dataset of 10 real-world projects show that using DeFP, by investigating only 60% of the warnings, developers can find +90% of actual vulnerabilities. Moreover, DeFP improves the state-of-the-art approach 30% in both precision and recall. [[Preprint](https://arxiv.org/abs/2110.03296)]
 
 
 # Table of contents
@@ -782,3 +781,13 @@ In order to train and evaluate an ML model ranking SA warnings, we need a set of
 [5] G. Lin, W. Xiao, J. Zhang, and Y. Xiang, “Deep learning-based vulnerable function detection: A benchmark,” in International Conference on Information and Communications Security. Springer, 2019, pp. 219– 232.
 
 [6] S. Lee, S. Hong, J. Yi, T. Kim, C.-J. Kim, and S. Yoo, “Classifying false positive static checker alarms in continuous integration using convolutional neural networks,” in 2019 12th IEEE Conference on Software Testing, Validation and Verification (ICST). IEEE, 2019, pp. 391–401.
+
+## Cite us
+```
+@article{ngo2021ranking,
+  title={Ranking Warnings of Static Analysis Tools Using Representation Learning},
+  author={Ngo, Kien-Tuan and Do, Dinh-Truong and Nguyen, Thu-Trang and Vo, Hieu Dinh},
+  journal={arXiv preprint arXiv:2110.03296},
+  year={2021}
+}
+```
